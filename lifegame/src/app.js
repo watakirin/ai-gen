@@ -215,5 +215,6 @@
   cellSizeVal.textContent = String(cellSize);
   resizeCanvas();
   randomize(0.2);
+  toggleRunning();
 })();
 
