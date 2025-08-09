@@ -16,7 +16,7 @@
 - `Makefile`: Convenience `serve` target using Python’s `http.server`.
 
 ## Notes
-- Default grid is 80×50, with toroidal wrapping ON.
+- Default grid is 50×80, with toroidal wrapping ON.
 - Adjust cell size and FPS live; resizing resets the grid for simplicity.
 - Rendering uses Canvas with light grid lines and green live cells.
 
