@@ -178,11 +178,25 @@
   resizeBtn.addEventListener('click', () => {
     const newCols = Math.max(10, Math.min(300, Number(colsInput.value)) || cols);
     const newRows = Math.max(10, Math.min(200, Number(rowsInput.value)) || rows);
-    cols = newCols; rows = newRows;
+
+    // Preserve current grid before changing dimensions
+    const oldCols = cols;
+    const oldRows = rows;
+    const oldGrid = grid;
+
+    cols = newCols;
+    rows = newRows;
     const newGrid = makeGrid(cols, rows);
-    // Copy overlap region
-    for (let y = 0; y < Math.min(rows, grid.length ? rows : 0); y++) {}
-    // Simpler: reset when resizing
+
+    // Copy overlapping region from old grid into the new grid
+    const copyCols = Math.min(oldCols, cols);
+    const copyRows = Math.min(oldRows, rows);
+    for (let y = 0; y < copyRows; y++) {
+      for (let x = 0; x < copyCols; x++) {
+        newGrid[y * cols + x] = oldGrid[y * oldCols + x];
+      }
+    }
+
     grid = newGrid;
     resizeCanvas();
     draw();
